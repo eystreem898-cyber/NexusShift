@@ -9,6 +9,34 @@ Nexus-Shift is a Python-based proxy-rotating traffic simulator designed for infr
 - Configurable target URL, refresh interval, and proxy source
 - Optional dry-run mode to validate proxy list without sending traffic
 
+## How It Works
+
+```
+┌─────────────────────────────────────────────────────────────┐
+│                    NEXUS-SHIFT WORKFLOW                     │
+└─────────────────────────────────────────────────────────────┘
+
+1. PROXY FETCHING
+   ├─ Fetch fresh proxies from ProxyScrape API
+   ├─ Parse proxy list
+   └─ Validate format
+
+2. TRAFFIC GENERATION
+   ├─ Select proxy from list
+   ├─ Send HTTP request to target URL
+   ├─ Track success/failure
+   └─ Apply refresh interval
+
+3. REAL-TIME DASHBOARD
+   ├─ Display success count (✓)
+   ├─ Display failure count (✗)
+   ├─ Show current target
+   └─ Show reload interval
+
+4. LOOP & ROTATE
+   └─ Return to step 2 until max attempts reached
+```
+
 ## Requirements
 
 - Python 3.8+
@@ -43,6 +71,24 @@ python3 NexusShift.py --target https://example.com --interval 5 --max-attempts 2
 ## Notes
 
 This tool is intended for authorized testing only. Use it only on systems and domains where you have explicit permission.
+
+## Screenshots
+
+### Project Overview & Features
+
+![Screenshot 1](Screenshot%202026-05-10%20212702.png)
+
+### CLI Dashboard in Action
+
+![Screenshot 2](Screenshot%202026-05-10%20212719.png)
+
+### Real-time Traffic Monitoring
+
+![Screenshot 3](Screenshot%202026-05-10%20212737.png)
+
+### Active Proxy Rotation
+
+![Screenshot 4](Screenshot%202026-05-10%20212744.png)
 
 ## License
 
